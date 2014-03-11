@@ -16,7 +16,7 @@
 }
 
 Name:           python%{pyver}-psutil
-Version:        1.2.1
+Version:        2.0.0
 Release:        1.ius%{?dist}
 Summary:        A process and system utilities module for Python
 
@@ -75,6 +75,9 @@ chmod 0755 $RPM_BUILD_ROOT%{python_sitearch}/*.so
 
 
 %changelog
+* Tue Mar 11 2014 Ben Harper <ben.harper@rackspace.com> - 2.0.0-1.ius
+- Latest sources from upstream
+
 * Thu Dec 12 2013 Ben Harper <ben.harper@rackspace.com> - 1.2.1-1.ius
 - Latest sources from upstream
 
