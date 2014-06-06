@@ -31,7 +31,7 @@ BuildRequires:  python27-devel
 %if 0%{?el5}
 BuildRequires:  python27-setuptools
 BuildRequires:  gcc44
-BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %endif
 
 %description
