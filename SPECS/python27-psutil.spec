@@ -22,7 +22,7 @@ Summary:        A process and system utilities module for Python
 
 Group:          Development/Languages
 License:        BSD
-URL:            http://psutil.googlecode.com/
+URL:            https://github.com/giampaolo/psutil
 #Source0:        http://psutil.googlecode.com/files/%{short_name}-%{version}.tar.gz
 Source0:        https://pypi.python.org/packages/source/p/%{short_name}/%{short_name}-%{version}.tar.gz
 
