@@ -25,7 +25,6 @@ License:        BSD
 URL:            https://github.com/giampaolo/psutil
 #Source0:        http://psutil.googlecode.com/files/%{short_name}-%{version}.tar.gz
 Source0:        https://pypi.python.org/packages/source/p/%{short_name}/%{short_name}-%{version}.tar.gz
-
 BuildRequires:  python27-devel
 
 %if 0%{?el5}
@@ -34,6 +33,7 @@ BuildRequires:  gcc44
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %endif
 
+
 %description
 psutil is a module providing an interface for retrieving information on all
 running processes and system utilization (CPU, memory, disks, network, users) in
@@ -41,15 +41,16 @@ a portable way by using Python, implementing many functionalities offered by
 command line tools such as: ps, top, df, kill, free, lsof, free, netstat,
 ifconfig, nice, ionice, iostat, iotop, uptime, pidof, tty, who, taskset, pmap.
 
+
 %prep
 %setup -q -n %{short_name}-%{version}
-
 # Remove shebangs
 for file in psutil/*.py; do
   sed -i.orig -e 1d $file && \
   touch -r $file.orig $file && \
   rm $file.orig
 done
+
 
 %build
 CFLAGS=$RPM_OPT_FLAGS %{__python} setup.py build
@@ -66,6 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # Fix permissions
 chmod 0755 $RPM_BUILD_ROOT%{python_sitearch}/*.so
+
 
 %files
 %doc CREDITS HISTORY LICENSE README
