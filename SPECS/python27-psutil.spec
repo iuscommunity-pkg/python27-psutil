@@ -19,7 +19,7 @@ Name:           python%{pyver}-psutil
 Version:        2.1.1
 Release:        1.ius%{?dist}
 Summary:        A process and system utilities module for Python
-
+Vendor:         IUS Community Project
 Group:          Development/Languages
 License:        BSD
 URL:            https://github.com/giampaolo/psutil
