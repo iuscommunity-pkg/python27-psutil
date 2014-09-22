@@ -16,8 +16,8 @@
 }
 
 Name:           python%{iusver}-%{srcname}
-Version:        2.1.1
-Release:        2.ius%{?dist}
+Version:        2.1.2
+Release:        1.ius%{?dist}
 Summary:        A process and system utilities module for Python
 Vendor:         IUS Community Project
 Group:          Development/Languages
@@ -51,23 +51,24 @@ CFLAGS=$RPM_OPT_FLAGS %{__python2} setup.py build
 
 
 %install
-%if 0%{?el5}
-%{__rm} -rf %{buildroot}
-%endif
+%{?el5:%{__rm} -rf %{buildroot}}
 %{__python2} setup.py install --optimize 1 --skip-build --root %{buildroot}
 chmod 0755 %{buildroot}%{python2_sitearch}/*.so
 
 
-%clean
-%{__rm} -rf %{buildroot}
+%{?el5:%clean}
+%{?el5:%{__rm} -rf %{buildroot}}
 
 
 %files
-%doc CREDITS HISTORY LICENSE README
+%doc CREDITS HISTORY.rst LICENSE README.rst
 %{python2_sitearch}/*
 
 
 %changelog
+* Mon Sep 22 2014 Carl George <carl.george@rackspace.com> - 2.1.2-1.ius
+- Latest upstream
+
 * Fri Jun 06 2014 Carl George <carl.george@rackspace.com> - 2.1.1-2.ius
 - Override __os_install_post to fix .pyc/pyo magic
 - Implement python packaging best practices
