@@ -16,7 +16,7 @@
 }
 
 Name:           python%{iusver}-%{srcname}
-Version:        2.1.2
+Version:        2.1.3
 Release:        1.ius%{?dist}
 Summary:        A process and system utilities module for Python
 Vendor:         IUS Community Project
@@ -66,6 +66,9 @@ chmod 0755 %{buildroot}%{python2_sitearch}/*.so
 
 
 %changelog
+* Wed Oct 01 2014 Carl George <carl.george@rackspace.com> - 2.1.3-1.ius
+- Latest upstream
+
 * Mon Sep 22 2014 Carl George <carl.george@rackspace.com> - 2.1.2-1.ius
 - Latest upstream
 
