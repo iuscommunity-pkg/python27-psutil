@@ -16,7 +16,7 @@
 }
 
 Name:           python%{iusver}-%{srcname}
-Version:        2.1.3
+Version:        2.2.0
 Release:        1.ius%{?dist}
 Summary:        A process and system utilities module for Python
 Vendor:         IUS Community Project
@@ -53,7 +53,6 @@ CFLAGS=$RPM_OPT_FLAGS %{__python2} setup.py build
 %install
 %{?el5:%{__rm} -rf %{buildroot}}
 %{__python2} setup.py install --optimize 1 --skip-build --root %{buildroot}
-chmod 0755 %{buildroot}%{python2_sitearch}/*.so
 
 
 %{?el5:%clean}
@@ -66,6 +65,10 @@ chmod 0755 %{buildroot}%{python2_sitearch}/*.so
 
 
 %changelog
+* Wed Jan 07 2015 Carl George <carl.george@rackspace.com> - 2.2.0-1.ius
+- Latest upstream
+- Remove unnecessary chmod on so files
+
 * Wed Oct 01 2014 Carl George <carl.george@rackspace.com> - 2.1.3-1.ius
 - Latest upstream
 
