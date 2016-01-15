@@ -16,7 +16,7 @@
 }
 
 Name:           python%{iusver}-%{srcname}
-Version:        3.3.0
+Version:        3.4.1
 Release:        1.ius%{?dist}
 Summary:        A process and system utilities module for Python
 Vendor:         IUS Community Project
@@ -65,6 +65,9 @@ CFLAGS=$RPM_OPT_FLAGS %{__python2} setup.py build
 
 
 %changelog
+* Fri Jan 15 2016 Ben Harper <ben.harper@rackspace.com> - 3.4.1-1.ius
+- Latest upstream
+
 * Mon Nov 30 2015 Ben Harper <ben.harper@rackspace.com> - 3.3.0-1.ius
 - Latest upstream
 
