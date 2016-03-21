@@ -43,7 +43,7 @@ ifconfig, nice, ionice, iostat, iotop, uptime, pidof, tty, who, taskset, pmap.
 
 %prep
 %setup -q -n %{srcname}-%{version}
-find -name '*.py' -type f -print0 | xargs -0 sed -i '1s|python|&%{pyver}|'
+find %{srcname} -type f -name \*.py -print0 | xargs -0 sed -i -e '1 {/^#!\//d}'
 
 
 %build
@@ -67,6 +67,7 @@ CFLAGS=$RPM_OPT_FLAGS %{__python2} setup.py build
 %changelog
 * Mon Mar 21 2016 Carl George <carl.george@rackspace.com> - 4.1.0-1.ius
 - Latest upstream
+- Remove shebangs
 
 * Thu Feb 18 2016 Ben Harper <ben.harper@rackspace.com> - 4.0.0-1.ius
 - Latest upstream
