@@ -16,14 +16,14 @@
 }
 
 Name:           python%{iusver}-%{srcname}
-Version:        4.4.0
+Version:        5.0.0
 Release:        1.ius%{?dist}
 Summary:        A process and system utilities module for Python
 Vendor:         IUS Community Project
 Group:          Development/Languages
 License:        BSD
 URL:            https://github.com/giampaolo/psutil
-Source0:        https://pypi.io/packages/source/p/%{srcname}/%{srcname}-%{version}.tar.gz
+Source0:        https://pypi.io/packages/source/p/%{srcname}/%{srcname}-%{version}.zip
 BuildRequires:  python%{iusver}-devel
 BuildRequires:  python%{iusver}-setuptools
 
@@ -65,6 +65,9 @@ CFLAGS=$RPM_OPT_FLAGS %{__python2} setup.py build
 
 
 %changelog
+* Tue Nov 08 2016 Ben Harper <ben.harper@rackspace.com> - 5.0.0-1.ius
+- Latest upstream
+
 * Mon Oct 24 2016 Carl George <carl.george@rackspace.com> - 4.4.0-1.ius
 - Latest upstream
 
