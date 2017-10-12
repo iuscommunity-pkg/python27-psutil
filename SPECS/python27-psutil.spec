@@ -1,13 +1,7 @@
-%global pymajor 2
-%global pyminor 7
-%global pyver %{pymajor}.%{pyminor}
-%global iusver %{pymajor}%{pyminor}
-%global __python2 %{_bindir}/python%{pyver}
-%global python2_sitelib  %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
-%global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")
-%global __os_install_post %{__python27_os_install_post}
-%global srcname psutil
-%global src %(echo %{srcname} | cut -c1)
+%global pypi_name psutil
+%global python python27
+%global __python2 %{_bindir}/python2.7
+%global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
 
 # Filter Python modules from Provides
 %{?filter_setup:
@@ -15,23 +9,17 @@
 %filter_setup
 }
 
-Name:           python%{iusver}-%{srcname}
-Version:        5.3.1
+Name:           %{python}-%{pypi_name}
+Version:        5.4.0
 Release:        1.ius%{?dist}
 Summary:        A process and system utilities module for Python
 Vendor:         IUS Community Project
 Group:          Development/Languages
 License:        BSD
-URL:            https://github.com/giampaolo/psutil
-Source0:        https://files.pythonhosted.org/packages/source/p/psutil/psutil-%{version}.tar.gz
-BuildRequires:  python%{iusver}-devel
-BuildRequires:  python%{iusver}-setuptools
-
-%if 0%{?el5}
-BuildRequires:  gcc44
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-%endif
-
+URL:            https://github.com/giampaolo/%{pypi_name}
+Source0:        https://files.pythonhosted.org/packages/source/p/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
+BuildRequires:  %{python}-devel
+BuildRequires:  %{python}-setuptools
 
 %description
 psutil is a module providing an interface for retrieving information on all
@@ -40,30 +28,28 @@ a portable way by using Python, implementing many functionalities offered by
 command line tools such as: ps, top, df, kill, free, lsof, free, netstat,
 ifconfig, nice, ionice, iostat, iotop, uptime, pidof, tty, who, taskset, pmap.
 
-
 %prep
-%setup -q -n %{srcname}-%{version}
-find %{srcname} -type f -name \*.py -print0 | xargs -0 sed -i -e '1 {/^#!\//d}'
-
+%autosetup -n %{pypi_name}-%{version}
 
 %build
 CFLAGS=$RPM_OPT_FLAGS %{__python2} setup.py build
 
-
 %install
-%{?el5:%{__rm} -rf %{buildroot}}
 %{__python2} setup.py install --optimize 1 --skip-build --root %{buildroot}
 
-
-%{?el5:%clean}
-%{?el5:%{__rm} -rf %{buildroot}}
-
 %files
-%doc CREDITS HISTORY.rst LICENSE README.rst
-%{python2_sitearch}/*
-
+%license LICENSE
+%doc CREDITS HISTORY.rst README.rst
+%{python2_sitearch}/%{pypi_name}
+%{python2_sitearch}/%{pypi_name}-%{version}-py?.?.egg-info
 
 %changelog
+* Thu Oct 12 2017 Ben Harper <ben.harper@rackspace.com> - 5.4.0-1.ius
+- Latest upstream
+- remove EL5 stuff
+- update macros
+- use %license
+
 * Tue Sep 12 2017 Carl George <carl@george.computer> - 5.3.1-1
 - Latest upstream
 
