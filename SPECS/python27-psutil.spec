@@ -10,7 +10,7 @@
 }
 
 Name:           %{python}-%{pypi_name}
-Version:        5.4.0
+Version:        5.4.1
 Release:        1.ius%{?dist}
 Summary:        A process and system utilities module for Python
 Vendor:         IUS Community Project
@@ -44,6 +44,9 @@ CFLAGS=$RPM_OPT_FLAGS %{__python2} setup.py build
 %{python2_sitearch}/%{pypi_name}-%{version}-py?.?.egg-info
 
 %changelog
+* Wed Nov 08 2017 Ben Harper <ben.harper@rackspace.com> - 5.4.1-1.ius
+- Latest upstream
+
 * Thu Oct 12 2017 Ben Harper <ben.harper@rackspace.com> - 5.4.0-1.ius
 - Latest upstream
 - remove EL5 stuff
